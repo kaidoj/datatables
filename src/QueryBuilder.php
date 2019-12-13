@@ -161,7 +161,7 @@ class QueryBuilder
     public function setFilteredQuery(): void
     {
         $this->filtered = new Query();
-        $this->filtered->set($this->query.$this->filter($this->filtered));
+        $this->filtered->set($this->query.$this->filter($this->filtered).$this->groupBy());
     }
 
     /**
@@ -170,7 +170,7 @@ class QueryBuilder
     public function setFullQuery(): void
     {
         $this->full = clone $this->filtered;
-        $this->full->set($this->filtered.$this->groupBy().$this->orderBy().$this->limit());
+        $this->full->set($this->filtered.$this->orderBy().$this->limit());
     }
 
     /**

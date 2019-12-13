@@ -228,7 +228,7 @@ class Datatables
     public function setResponseData(): void
     {
         $this->response['draw'] = (integer)$this->request->get('draw');
-        $this->response['recordsTotal'] = $this->db->count($this->builder->query);
+        $this->response['recordsTotal'] = $this->db->count($this->builder->query->merge($this->builder->groupBy()));
         $this->response['recordsFiltered'] = $this->db->count($this->builder->filtered);
         $this->response['data'] = $this->getData();
 

@@ -42,6 +42,19 @@ class Query
     }
 
     /**
+     * Merge extras to sql string
+     *
+     * @param $extra
+     * @return void
+     */
+    public function merge($extra) : Query
+    {
+        $this->sql .= $extra;
+
+        return $this;
+    }
+
+    /**
      *
      */
     public function __toString()
