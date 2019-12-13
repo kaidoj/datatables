@@ -137,6 +137,10 @@ __getQuery()__
 
 * returns the sql query string that is created by the library (for dev purpose)
 
+__setGroupBy($column)__
+
+* adds group by to the end of the sql query
+
 
 ## Example
 

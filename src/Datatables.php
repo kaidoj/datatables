@@ -175,6 +175,17 @@ class Datatables
     }
 
     /**
+     * @param $column
+     * @return Datatables
+     */
+    public function setGroupBy($column) : Datatables
+    {
+        $this->builder->setGroupBy($column);
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     protected function getData(): array

@@ -59,6 +59,13 @@ class QueryBuilder
     private $dataObject = false;
 
     /**
+     * Group by
+     *
+     * @var string
+     */
+    private $groupBy;
+
+    /**
      *
      * @param string $query
      * @param Request $request
@@ -163,7 +170,7 @@ class QueryBuilder
     public function setFullQuery(): void
     {
         $this->full = clone $this->filtered;
-        $this->full->set($this->filtered.$this->orderBy().$this->limit());
+        $this->full->set($this->filtered.$this->groupBy().$this->orderBy().$this->limit());
     }
 
     /**
@@ -176,6 +183,31 @@ class QueryBuilder
         $distinct->set("SELECT $column FROM ({$this->query})t GROUP BY $column");
 
         return $distinct;
+    }
+
+    /**
+     * Sets group by
+     *
+     * @param $column
+     * @return QueryBuilder
+     */
+    public function setGroupBy($column) : QueryBuilder
+    {
+        if (empty($column)) {
+            return '';
+        }
+
+        $this->groupBy = ' GROUP BY ' . $column;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function groupBy() : ?string
+    {
+        return $this->groupBy;
     }
 
     /**
